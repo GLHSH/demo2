@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.Dao.ILoginDao;
+import com.example.demo.Dao.IUserDao;
 import com.example.demo.entity.BaseModel;
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -22,9 +23,19 @@ import javax.annotation.Resource;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Resource
-    ILoginDao loginDao;
+    IUserDao userDao;
     @Override
     public BaseModel<User> login(User user) {
-        return loginDao.login(user);
+        return userDao.login(user);
+    }
+
+    @Override
+    public List selectLikeUser(int user_id) {
+        return userDao.selectLikeUser(user_id);
+    }
+
+    @Override
+    public List selectFans(int user_id) {
+        return userDao.selectFans(user_id);
     }
 }

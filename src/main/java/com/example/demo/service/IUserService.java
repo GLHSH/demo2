@@ -4,6 +4,8 @@ import com.example.demo.entity.BaseModel;
 import com.example.demo.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -14,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
     BaseModel<User> login(User user);
+    List<User> selectLikeUser(int user_id);
+    List<User> selectFans(int user_id);
 }

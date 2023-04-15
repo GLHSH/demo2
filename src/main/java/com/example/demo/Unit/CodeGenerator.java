@@ -23,7 +23,7 @@ public class CodeGenerator {
                             .pathInfo(Collections.singletonMap(OutputFile.xml, path+"\\com\\example\\demo\\mapper\\xml")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("like_ex"); // 设置需要生成的表名
+                    builder.addInclude("like_user"); // 设置需要生成的表名
 //                            .addTablePrefix("t_", "c_"); // 设置过滤表前缀
                 })
                 .execute();

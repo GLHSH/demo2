@@ -21,7 +21,7 @@ public class User implements Serializable {
 
     private String password;
 
-    private String nikeName;
+    private String nickName;
 
     private String imgUrl;
 
@@ -53,12 +53,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getNikeName() {
-        return nikeName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNikeName(String nikeName) {
-        this.nikeName = nikeName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getImgUrl() {
@@ -91,7 +91,7 @@ public class User implements Serializable {
         "id = " + id +
         ", name = " + name +
         ", password = " + password +
-        ", nikeName = " + nikeName +
+        ", nikeName = " + nickName +
         ", imgUrl = " + imgUrl +
         ", status = " + status +
         ", text = " + text +

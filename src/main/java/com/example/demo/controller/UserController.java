@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.BaseModel;
+//import com.example.demo.entity.LoginOk;
 import com.example.demo.entity.LoginOk;
 import com.example.demo.entity.User;
 import com.example.demo.service.IExperienceService;
@@ -39,12 +39,13 @@ public class UserController {
         System.out.println("Controller " + baseModel);
         if (baseModel.getCode() == 1){
             val user1 = baseModel.getT();
-            val loginOk = new LoginOk(
+            return new LoginOk(
                     user1,
                     experienceService.selectLikeEx(user1.getId()),
-                    experienceService.selectMeExperience(user1.getId())
+                    experienceService.selectMeExperience(user1.getId()),
+                    userService.selectLikeUser(user1.getId()),
+                    userService.selectFans(user1.getId())
             );
-            return loginOk;
         }
         return null;
     }

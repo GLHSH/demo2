@@ -2,10 +2,8 @@ package com.example.demo.Dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.Experience;
-import com.example.demo.entity.User;
 import com.example.demo.mapper.ExperienceMapper;
 import com.github.yulichang.query.MPJQueryWrapper;
-import lombok.val;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -19,7 +17,6 @@ public class ExperienceDaoImpI implements IExperienceDao {
     @Override
     public List<Experience> SelectAllTest() {
         List<Experience> selectList = experienceMapper.selectList(null);
-        System.out.println(selectList);
         return selectList;
 
     }
@@ -40,5 +37,10 @@ public class ExperienceDaoImpI implements IExperienceDao {
                 .eq("a.user_id", user_id);
     //列表查询
         return experienceMapper.selectJoinList(Experience.class, wrapper);
+    }
+
+    @Override
+    public void addExperience(Experience experience) {
+        experienceMapper.insert(experience);
     }
 }
