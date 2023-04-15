@@ -11,4 +11,8 @@ public interface IUserDao {
     List selectLikeUser(int user_id);
 
     List selectFans(int user_id);
+
+    void register(User user);
+
+    int update(User user);
 }

@@ -49,4 +49,22 @@ public class UserController {
         }
         return null;
     }
+
+    @ResponseBody
+    @RequestMapping("/register")
+    public User register(@RequestBody User user) {
+        System.out.println("有注册请求来啦"+user);
+        userService.register(user);
+        if (user.getId() == null || user.getId() <= 0){
+            return new User();
+        }
+        return user;
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public int update(@RequestBody User user) {
+        System.out.println("有更新请求来啦"+user);
+        return userService.update(user);
+    }
 }

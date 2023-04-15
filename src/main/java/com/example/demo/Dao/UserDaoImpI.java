@@ -3,9 +3,9 @@ package com.example.demo.Dao;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.BaseModel;
 import com.example.demo.entity.User;
-import com.example.demo.mapper.LikeUserMapper;
 import com.example.demo.mapper.UserMapper;
 import com.github.yulichang.query.MPJQueryWrapper;
+import lombok.val;
 import lombok.var;
 import org.springframework.stereotype.Repository;
 
@@ -34,9 +34,27 @@ public class UserDaoImpI implements IUserDao {
         }
         return baseModel;
     }
+    public void register(User user) {
+        val baseModel = login(user);
+        if (baseModel.getCode() == 0) {
+            int insertResult = userMapper.insert(user);
+            System.out.println("\n注册用户影响的MySQL数据库行数:" + insertResult + "");
+        } else {
+            baseModel.setCode(10);
+            baseModel.setMessage("用户名已经存在");
+        }
+    }
+
     @Override
-    public List selectLikeUser(int user_id) {
-        MPJQueryWrapper wrapper = new MPJQueryWrapper<User>()
+    public int update(User user) {
+        val i = userMapper.updateById(user);
+        System.out.println("UserDao层 after:\t" + user +"\n");
+        return i;
+    }
+
+    @Override
+    public List<User> selectLikeUser(int user_id) {
+        MPJQueryWrapper<User> wrapper = new MPJQueryWrapper<User>()
                 .select("t.id", "t.img_url", "t.nick_name")
                 .leftJoin("like_user a on a.like_user_id = t.id ")
                 .eq("a.user_id", user_id);

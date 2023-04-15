@@ -18,4 +18,8 @@ public interface IUserService extends IService<User> {
     BaseModel<User> login(User user);
     List<User> selectLikeUser(int user_id);
     List<User> selectFans(int user_id);
+
+    void register(User user);
+
+    int update(User user);
 }

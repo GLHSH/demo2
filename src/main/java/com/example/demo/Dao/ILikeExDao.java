@@ -1,5 +1,9 @@
 package com.example.demo.Dao;
 
-public interface ILikeExDao {
+import com.example.demo.entity.LikeEx;
+import com.example.demo.entity.LikeUser;
 
+public interface ILikeExDao {
+    int addLikeEx(LikeEx likeEx);
+    int delLikeEx(LikeEx likeEx);
 }

@@ -38,4 +38,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public List selectFans(int user_id) {
         return userDao.selectFans(user_id);
     }
+
+    @Override
+    public void register(User user) {
+        userDao.register(user);
+    }
+
+    @Override
+    public int update(User user) {
+        return userDao.update(user);
+    }
+
+
 }

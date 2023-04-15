@@ -1,10 +1,13 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.Dao.ILikeExDao;
 import com.example.demo.entity.LikeEx;
 import com.example.demo.mapper.LikeExMapper;
 import com.example.demo.service.ILikeExService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,4 +20,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class LikeExServiceImpl extends ServiceImpl<LikeExMapper, LikeEx> implements ILikeExService {
 
+    @Resource
+    ILikeExDao likeExDao;
+
+    @Override
+    public int addLikeEx(LikeEx likeEx) {
+        return likeExDao.addLikeEx(likeEx);
+    }
+
+    @Override
+    public int delLikeEx(LikeEx likeEx) {
+        return likeExDao.delLikeEx(likeEx);
+    }
 }
