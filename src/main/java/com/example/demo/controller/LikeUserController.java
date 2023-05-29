@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.LikeUser;
 import com.example.demo.service.ILikeUserService;
+import lombok.val;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,12 @@ public class LikeUserController {
     }
 
     @ResponseBody
-    @RequestMapping("/addLikeUser1")
-    public LikeUser addLikeUser1(){
-        return new LikeUser();
+    @RequestMapping("/selectLike")
+    public Integer selectLike(@RequestBody LikeUser likeUser){
+        val likeUser1 = iLikeUserService.selectLike(likeUser);
+        if (likeUser1 == null)
+            return 0;
+        return likeUser1.getUserId();
     }
 
     @ResponseBody

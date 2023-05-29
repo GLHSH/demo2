@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.entity.LikeEx;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.demo.entity.LikeUser;
 
 /**
  * <p>
@@ -16,4 +15,6 @@ public interface ILikeExService extends IService<LikeEx> {
     int addLikeEx(LikeEx likeEx);
 
     int delLikeEx(LikeEx likeEx);
+
+    LikeEx selectLike(LikeEx likeEx);
 }

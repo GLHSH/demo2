@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.entity.Experience;
 import com.example.demo.mapper.ExperienceMapper;
 import com.github.yulichang.query.MPJQueryWrapper;
@@ -15,10 +16,27 @@ public class ExperienceDaoImpI implements IExperienceDao {
     ExperienceMapper experienceMapper;
 
     @Override
-    public List<Experience> SelectAllTest() {
-        List<Experience> selectList = experienceMapper.selectList(null);
-        return selectList;
+    public List<Experience> FindAll(String city) {
+        QueryWrapper<Experience> wrapper = new QueryWrapper<>();
+        if (city != null) {
+            wrapper.like("city", city);
+        }
+        wrapper.eq("status","正常");
+        return experienceMapper.selectList(wrapper);
+    }
+    @Override
+    public List<Experience> SelectAllBySearch(String search) {
+        QueryWrapper<Experience> wrapper = new QueryWrapper<>();
+        wrapper.eq("status","正常")
+                .like("title",search)
+                .or()
+                .like("text",search);
+        return experienceMapper.selectList(wrapper);
+    }
 
+    @Override
+    public int delExperience(Experience experience) {
+        return experienceMapper.deleteById(experience);
     }
 
     @Override
@@ -41,6 +59,29 @@ public class ExperienceDaoImpI implements IExperienceDao {
 
     @Override
     public void addExperience(Experience experience) {
-        experienceMapper.insert(experience);
+        if (experience.getId() != null ){
+            experienceMapper.updateById(experience);
+        } else {
+            experienceMapper.insert(experience);
+        }
     }
+
+    @Override
+    public int updateExperience(Experience experience) {
+        UpdateWrapper<Experience> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id", experience.getId())
+                .set("good",experience.getGood() );
+
+        return experienceMapper.update(null, updateWrapper);
+    }
+    @Override
+    public int updateExperienceStar(Experience experience) {
+        UpdateWrapper<Experience> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id", experience.getId())
+                .set("star",experience.getStar() );
+
+        return experienceMapper.update(null, updateWrapper);
+    }
+
+
 }

@@ -32,4 +32,9 @@ public class LikeExServiceImpl extends ServiceImpl<LikeExMapper, LikeEx> impleme
     public int delLikeEx(LikeEx likeEx) {
         return likeExDao.delLikeEx(likeEx);
     }
+
+    @Override
+    public LikeEx selectLike(LikeEx likeEx) {
+        return likeExDao.selectLike(likeEx);
+    }
 }

@@ -31,4 +31,9 @@ public class LikeUserServiceImpl extends ServiceImpl<LikeUserMapper, LikeUser> i
     public int delLikeUser(LikeUser likeUser) {
         return likeUserDao.delLikeUser(likeUser);
     }
+
+    @Override
+    public LikeUser selectLike(LikeUser likeUser) {
+        return likeUserDao.selectLike(likeUser);
+    }
 }

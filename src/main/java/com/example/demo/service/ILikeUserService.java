@@ -15,4 +15,6 @@ public interface ILikeUserService extends IService<LikeUser> {
     int addLikeUser(LikeUser likeUser);
 
     int delLikeUser(LikeUser likeUser);
+
+    LikeUser selectLike(LikeUser likeUser);
 }

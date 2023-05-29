@@ -40,7 +40,7 @@ public class Experience implements Serializable {
 
     private Integer star;
 
-    private LocalDateTime time;
+    private String time;
 
     public Integer getId() {
         return id;
@@ -130,17 +130,17 @@ public class Experience implements Serializable {
         this.star = star;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
     @Override
     public String toString() {
-        return "Experience{" +
+        return "\n Experience{" +
         "id = " + id +
         ", userId = " + userId +
         ", title = " + title +

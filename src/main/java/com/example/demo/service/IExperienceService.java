@@ -14,9 +14,15 @@ import java.util.List;
  * @since 2023-04-14
  */
 public interface IExperienceService extends IService<Experience> {
-    List<Experience> SelectAllTest();
+    List<Experience> SelectAllTest(String city);
+    List<Experience> SelectAllBySearch(String city);
     List<Experience> selectMeExperience(int user_id);
     List<Experience> selectLikeEx(int user_id);
 
     void addExperience(Experience experience);
+    int updateExperience(Experience experience);
+
+    int updateExperienceStar(Experience experience);
+
+    int delExperience(Experience experience);
 }

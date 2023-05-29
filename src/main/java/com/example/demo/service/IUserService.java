@@ -19,7 +19,9 @@ public interface IUserService extends IService<User> {
     List<User> selectLikeUser(int user_id);
     List<User> selectFans(int user_id);
 
-    void register(User user);
+    User register(User user);
 
     int update(User user);
+
+    User exSelectOne(User user);
 }

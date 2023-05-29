@@ -8,4 +8,6 @@ public interface ILikeUserDao {
     int addLikeUser(LikeUser likeUser);
 
     int delLikeUser(LikeUser likeUser);
+
+    LikeUser selectLike(LikeUser likeUser);
 }

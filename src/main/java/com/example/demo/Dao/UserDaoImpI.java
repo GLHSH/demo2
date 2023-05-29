@@ -20,28 +20,34 @@ public class UserDaoImpI implements IUserDao {
 
     @Override
     public BaseModel<User> login(User user) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>(user);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name",user.getName());
-        queryWrapper.eq("password",user.getPassword());
         User userResult = userMapper.selectOne(queryWrapper);
-        var baseModel = new BaseModel(0, "登录失败！");
+        var baseModel = new BaseModel(-1, "用户不存在！");
         if (userResult == null) {
             System.out.println("------ result ==null!!!");
         } else {
-            baseModel.setCode(1);
-            baseModel.setMessage("登录成功！");
-            baseModel.setT(userResult);
+            if (userResult.getPassword().equals( user.getPassword() )){
+                baseModel.setCode(1);
+                baseModel.setMessage("登录成功！");
+                baseModel.setT(userResult);
+            } else{
+                baseModel.setCode(0);
+                baseModel.setMessage("密码错误");
+            }
         }
         return baseModel;
     }
-    public void register(User user) {
-        val baseModel = login(user);
-        if (baseModel.getCode() == 0) {
+    public User register(User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name",user.getName());
+        val selectOne = userMapper.selectOne(queryWrapper);
+        if (selectOne == null) {
             int insertResult = userMapper.insert(user);
-            System.out.println("\n注册用户影响的MySQL数据库行数:" + insertResult + "");
+            System.out.println("\n 注册用户:" + insertResult + "");
+            return user;
         } else {
-            baseModel.setCode(10);
-            baseModel.setMessage("用户名已经存在");
+            return null;
         }
     }
 
@@ -51,11 +57,18 @@ public class UserDaoImpI implements IUserDao {
         System.out.println("UserDao层 after:\t" + user +"\n");
         return i;
     }
+    @Override
+    public User exSelectOne(User user) {
+        MPJQueryWrapper<User> wrapper = new MPJQueryWrapper<User>()
+                .select("t.id", "t.img_url", "t.nick_name","t.text")
+                .eq("id", user.getId());
+        return userMapper.selectOne(wrapper);
+    }
 
     @Override
     public List<User> selectLikeUser(int user_id) {
         MPJQueryWrapper<User> wrapper = new MPJQueryWrapper<User>()
-                .select("t.id", "t.img_url", "t.nick_name")
+                .select("t.id", "t.img_url", "t.nick_name","t.text")
                 .leftJoin("like_user a on a.like_user_id = t.id ")
                 .eq("a.user_id", user_id);
         //列表查询

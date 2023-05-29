@@ -95,6 +95,6 @@ public class User implements Serializable {
         ", imgUrl = " + imgUrl +
         ", status = " + status +
         ", text = " + text +
-        "}";
+        "}\n";
     }
 }

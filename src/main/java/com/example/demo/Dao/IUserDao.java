@@ -12,7 +12,10 @@ public interface IUserDao {
 
     List selectFans(int user_id);
 
-    void register(User user);
+    User register(User user);
 
     int update(User user);
+
+    User exSelectOne(User user);
+
 }

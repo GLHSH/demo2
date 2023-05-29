@@ -24,8 +24,13 @@ public class ExperienceServiceImpl extends ServiceImpl<ExperienceMapper, Experie
     IExperienceDao experienceDao;
 
     @Override
-    public List<Experience> SelectAllTest() {
-        return experienceDao.SelectAllTest();
+    public List<Experience> SelectAllTest(String city) {
+        return experienceDao.FindAll(city);
+    }
+
+    @Override
+    public List<Experience> SelectAllBySearch(String search) {
+        return experienceDao.SelectAllBySearch(search);
     }
 
     @Override
@@ -41,5 +46,20 @@ public class ExperienceServiceImpl extends ServiceImpl<ExperienceMapper, Experie
     @Override
     public void addExperience(Experience experience) {
         experienceDao.addExperience(experience);
+    }
+
+    @Override
+    public int updateExperience(Experience experience) {
+        return experienceDao.updateExperience(experience);
+    }
+
+    @Override
+    public int updateExperienceStar(Experience experience) {
+        return experienceDao.updateExperienceStar(experience);
+    }
+
+    @Override
+    public int delExperience(Experience experience) {
+        return experienceDao.delExperience(experience);
     }
 }
